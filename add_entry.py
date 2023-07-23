@@ -77,3 +77,22 @@ class AddEntryWindow:
         travel_no_checkbox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
         travel_info_label.grid(row=2, column=0, columnspan=2, sticky="w")
         self.travel_info_entry.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky="w")
+
+        # Quarantine Information Frame
+        quarantine_info_frame = tk.LabelFrame(self.add_entry_frame, text="Quarantine Information")
+        quarantine_info_frame.grid(row=2, column=0, padx=10, pady=10, sticky="w")
+
+        # Checkboxes for quarantine
+        self.checkbox_quarantine = tk.IntVar()
+        quarantine_label = tk.Label(quarantine_info_frame, text="Are you currently serving Quarantine Order (QO) / Leave of Absence (LOA) / Stay-home Notice (SHN)?")
+        quarantine_qo_checkbox = tk.Checkbutton(quarantine_info_frame, text="Quarantine Order (QO)", variable=self.checkbox_quarantine, onvalue=1, offvalue=0)
+        quarantine_loa_checkbox = tk.Checkbutton(quarantine_info_frame, text="Leave of Absence (LOA)", variable=self.checkbox_quarantine, onvalue=2, offvalue=0)
+        quarantine_shn_checkbox = tk.Checkbutton(quarantine_info_frame, text="Stay-home Notice (SHN)", variable=self.checkbox_quarantine, onvalue=3, offvalue=0)
+        quarantine_none_checkbox = tk.Checkbutton(quarantine_info_frame, text="None of the above", variable=self.checkbox_quarantine, onvalue=0, offvalue=4)
+
+        # Grid layout for quarantine information
+        quarantine_label.grid(row=0, column=0, columnspan=2, sticky="w")
+        quarantine_qo_checkbox.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        quarantine_loa_checkbox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+        quarantine_shn_checkbox.grid(row=2, column=0, padx=5, pady=5, sticky="w")
+        quarantine_none_checkbox.grid(row=2, column=1, padx=5, pady=5, sticky="w")
