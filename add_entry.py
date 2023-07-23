@@ -56,3 +56,24 @@ class AddEntryWindow:
 
         # Add style for basic_info_frame
         basic_info_frame.configure(style="Accent.TLabelframe")
+
+        # Travel Information Frame
+        travel_info_frame = tk.LabelFrame(self.add_entry_frame, text="Travel Information")
+        travel_info_frame.grid(row=1, column=0, padx=10, pady=10, sticky="w")
+
+        # Checkboxes for travel
+        self.checkbox_travel = tk.IntVar()
+        travel_label = tk.Label(travel_info_frame, text="Have you travelled to and from any country(ies) within the last 14 days?")
+        travel_yes_checkbox = tk.Checkbutton(travel_info_frame, text="Yes", variable=self.checkbox_travel, onvalue=1, offvalue=0)
+        travel_no_checkbox = tk.Checkbutton(travel_info_frame, text="No", variable=self.checkbox_travel, onvalue=0, offvalue=1)
+
+        # Additional Information for travel
+        travel_info_label = tk.Label(travel_info_frame, text="Country, State, City (If yes, please state the country(ies) you had visited):")
+        self.travel_info_entry = tk.Entry(travel_info_frame)
+
+        # Grid layout for travel information
+        travel_label.grid(row=0, column=0, columnspan=2, sticky="w")
+        travel_yes_checkbox.grid(row=1, column=0, padx=5, pady=5, sticky="w")
+        travel_no_checkbox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+        travel_info_label.grid(row=2, column=0, columnspan=2, sticky="w")
+        self.travel_info_entry.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky="w")
