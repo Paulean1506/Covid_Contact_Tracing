@@ -31,12 +31,12 @@ class ContactTracingApp:
         self.button_add_entry.grid(row=2, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
         self.button_search.grid(row=3, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
 
-def add_entry_window(self):
+    def add_entry_window(self):
         self.add_entry_toplevel = tk.Toplevel(self.root)  # Use self.add_entry_toplevel
         self.add_entry_toplevel.title("Add Entry")
         add_entry_window = AddEntryWindow(self.add_entry_toplevel)
 
-def search_entry(self):
+    def search_entry(self):
         search_name = self.entry_search.get()  # Get the value from the entry widget
         search_entry_window = SearchEntryWindow(self.root, search_name)
 
