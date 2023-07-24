@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from tkinter import messagebox
+import csv
 from csv_operations import write_to_csv
 from styles import configure_custom_style
 
@@ -162,3 +163,21 @@ class AddEntryWindow:
         working_from_home_label.grid(row=0, column=0, columnspan=2, sticky="w")
         working_from_home_yes_checkbox.grid(row=1, column=0, padx=5, pady=5, sticky="w")
         working_from_home_no_checkbox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+
+        # Button to Add Entry
+        button_add = ttk.Button(self.add_entry_frame, text="Add", command=self.add_entry)
+        button_back = ttk.Button(self.add_entry_frame, text="Back", command=go_back)
+
+        # Grid layout for buttons
+        button_add.grid(row=6, column=0, columnspan=2, pady=5, sticky="w")
+        button_back.grid(row=6, column=0, columnspan=2, pady=5, sticky="e")
+
+    def add_entry(self):
+        # Validate if all fields are filled
+        if not self.entry_name.get() or not self.entry_phone.get() or not self.entry_address.get() or not self.entry_date_visited.get():
+            messagebox.showerror("Error", "Please fill all fields.")
+            return
+
+        messagebox.showinfo("Success", "Contact information added successfully.")
+        if self.add_entry_toplevel: 
+            self.add_entry_toplevel.destroy()
