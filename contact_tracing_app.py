@@ -23,7 +23,7 @@ class ContactTracingApp:
 
         # Buttons
         self.button_add_entry = ttk.Button(root, text="Add Entry", command=self.add_entry_window)
-        self.button_search = ttk.Button(root, text="Search Entry", command=self.search_entry)
+        self.button_search = ttk.Button(root, text="Search Entry", command=self.perform_search)  
 
         # Layout using grid geometry manager
         self.label_app_title.grid(row=0, column=0, columnspan=2, padx=10, pady=5)
@@ -45,6 +45,11 @@ class ContactTracingApp:
             return
 
         search_entry_window = SearchEntryWindow(self.root, search_name)
+
+    def perform_search(self):
+        search_name = self.entry_search.get()
+        search_entry_window = SearchEntryWindow(self.root, search_name)
+        search_entry_window.search_entry()
 
 if __name__ == "__main__":
     root = tk.Tk()

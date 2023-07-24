@@ -8,8 +8,8 @@ class SearchEntryWindow:
         self.root = root
         self.search_name = search_name
 
-    def search_entry(self, search_name):  # Accept search_name as an argument here
-        if not search_name:
+    def search_entry(self):  
+        if not self.search_name:
             messagebox.showerror("Error", "Please enter a name to search.")
             return
 
@@ -17,7 +17,7 @@ class SearchEntryWindow:
         with open("contact_tracing.csv", "r") as csvfile:
             reader = csv.reader(csvfile)
             for row in reader:
-                if row[0] == search_name:
+                if row[0] == self.search_name:
                     messagebox.showinfo("Contact Information",
                                         f"Name: {row[0]}\nPhone Number: {row[1]}\nAddress: {row[2]}\nDate Visited: {row[3]}\n"
                                         f"\nTravelled outside country: {'Yes' if int(row[4]) == 1 else 'No'}\nTravel Information: {row[5]}\n"
