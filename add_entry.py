@@ -9,6 +9,7 @@ class AddEntryWindow:
     def __init__(self, add_entry_toplevel):
         self.add_entry_toplevel = add_entry_toplevel
         self.add_entry_toplevel.title("Add Entry")
+        configure_custom_style()
 
         # Create a canvas to add scrollbars
         canvas = tk.Canvas(self.add_entry_toplevel)
