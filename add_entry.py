@@ -179,6 +179,16 @@ class AddEntryWindow:
             messagebox.showerror("Error", "Please fill all fields.")
             return
 
+        with open("contact_tracing.csv", "a", newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow([self.entry_name.get(), self.entry_phone.get(), self.entry_address.get(), self.entry_date_visited.get(),
+                             self.checkbox_travel.get(), self.travel_info_entry.get(),
+                             self.checkbox_quarantine.get(),
+                             self.checkbox_contact.get(), self.contact_info_entry.get(),
+                             self.checkbox_fever.get(), self.checkbox_cough.get(), self.checkbox_sore_throat.get(),
+                             self.checkbox_runny_nose.get(), self.checkbox_persistent_pain.get(), self.checkbox_shortness_breath.get(),
+                             self.checkbox_working_from_home.get()])
+
         messagebox.showinfo("Success", "Contact information added successfully.")
-        if self.add_entry_toplevel: 
+        if self.add_entry_toplevel:  
             self.add_entry_toplevel.destroy()
