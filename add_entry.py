@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import csv
+from csv_operations import CSVOperations
 
 class AddEntryWindow:
-    def __init__(self, root):
+    def __init__(self, root, parent_app):
         self.root = root
+        self.parent_app = parent_app
         self.add_entry_toplevel = tk.Toplevel(self.root)
         self.add_entry_toplevel.title("Add Entry")
 

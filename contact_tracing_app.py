@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from add_entry import AddEntryWindow
 from search_entry import SearchEntryWindow
+from csv_operations import CSVOperations
+from styles import set_custom_style
 
 class ContactTracingApp:
     def __init__(self, root):
@@ -9,9 +11,8 @@ class ContactTracingApp:
         self.root.title("COVID Contact Tracing App")
         self.add_entry_toplevel = None
 
-        # Create a custom style
-        style = ttk.Style()
-        style.configure("Accent.TLabelframe", foreground="blue", background="white", font=("Helvetica", 12))
+        # Set custom style
+        set_custom_style()
 
         # Labels
         self.label_search = ttk.Label(root, text="Search by Name:")
@@ -34,8 +35,18 @@ class ContactTracingApp:
     def add_entry_window(self):
         self.add_entry_toplevel = tk.Toplevel(self.root)  # Use self.add_entry_toplevel
         self.add_entry_toplevel.title("Add Entry")
-        add_entry_window = AddEntryWindow(self.add_entry_toplevel)
+        add_entry_window = AddEntryWindow(self.add_entry_toplevel, self)
 
     def search_entry(self):
         search_name = self.entry_search.get()  # Get the value from the entry widget
+
+        if not search_name:
+            messagebox.showerror("Error", "Please enter a name to search.")
+            return
+
         search_entry_window = SearchEntryWindow(self.root, search_name)
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ContactTracingApp(root)
+    root.mainloop()

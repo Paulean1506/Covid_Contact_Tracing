@@ -1,10 +1,11 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import csv
+from csv_operations import CSVOperations
 
 class SearchEntryWindow:
-    def __init__(self, root):
+    def __init__(self, root, search_name):
         self.root = root
+        self.search_name = search_name
 
     def search_entry(self, search_name):  # Accept search_name as an argument here
         if not search_name:
