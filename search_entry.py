@@ -1,12 +1,12 @@
-# search_entry.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import csv
 
 class SearchEntryWindow:
-    def search_entry(self):
-        search_name = self.entry_search.get()  # Get the value from the entry widget
+    def __init__(self, root):
+        self.root = root
 
+    def search_entry(self, search_name):  # Accept search_name as an argument here
         if not search_name:
             messagebox.showerror("Error", "Please enter a name to search.")
             return

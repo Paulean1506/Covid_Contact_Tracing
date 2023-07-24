@@ -1,11 +1,11 @@
-# add_entry.py
 import tkinter as tk
 from tkinter import ttk, messagebox
 import csv
 
 class AddEntryWindow:
-    def add_entry_window(self):
-        self.add_entry_toplevel = tk.Toplevel(self.root)  # Use self.add_entry_toplevel
+    def __init__(self, root):
+        self.root = root
+        self.add_entry_toplevel = tk.Toplevel(self.root)
         self.add_entry_toplevel.title("Add Entry")
 
         # Create a canvas to add scrollbars
