@@ -1,15 +1,12 @@
+# add_entry.py
 import tkinter as tk
-import tkinter.ttk as ttk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
 import csv
-from csv_operations import write_to_csv
-from styles import configure_custom_style
 
 class AddEntryWindow:
-    def __init__(self, add_entry_toplevel):
-        self.add_entry_toplevel = add_entry_toplevel
+    def add_entry_window(self):
+        self.add_entry_toplevel = tk.Toplevel(self.root)  # Use self.add_entry_toplevel
         self.add_entry_toplevel.title("Add Entry")
-        configure_custom_style()
 
         # Create a canvas to add scrollbars
         canvas = tk.Canvas(self.add_entry_toplevel)
@@ -110,7 +107,7 @@ class AddEntryWindow:
         contact_no_checkbox = tk.Checkbutton(contact_info_frame, text="No", variable=self.checkbox_contact, onvalue=0, offvalue=1)
 
         # Additional Information for contact
-        contact_info_label = tk.Label(contact_info_frame, text="Stranger / dd-mm-yyyy (If yes, please tell us your relationship with the people and your last contact date with them):")
+        contact_info_label = tk.Label(contact_info_frame, text="Stranger / dd-mm-yyyy (If yes, please tell us your relationship with the people and your last contact date with them if no type N/A):")
         self.contact_info_entry = tk.Entry(contact_info_frame)
 
         # Grid layout for contact information
@@ -179,16 +176,30 @@ class AddEntryWindow:
             messagebox.showerror("Error", "Please fill all fields.")
             return
 
-        with open("contact_tracing.csv", "a", newline='') as csvfile:
+        # Read all existing data from the CSV file into a list of lists
+        entries = []
+        with open("contact_tracing.csv", "r") as csvfile:
+            reader = csv.reader(csvfile)
+            for row in reader:
+                entries.append(row)
+
+        # Add the new entry to the list
+        new_entry = [
+            self.entry_name.get(), self.entry_phone.get(), self.entry_address.get(), self.entry_date_visited.get(),
+            self.checkbox_travel.get(), self.travel_info_entry.get(),
+            self.checkbox_quarantine.get(),
+            self.checkbox_contact.get(), self.contact_info_entry.get(),
+            self.checkbox_fever.get(), self.checkbox_cough.get(), self.checkbox_sore_throat.get(),
+            self.checkbox_runny_nose.get(), self.checkbox_persistent_pain.get(), self.checkbox_shortness_breath.get(),
+            self.checkbox_working_from_home.get()
+        ]
+        entries.append(new_entry)
+
+        # Write all data back to the CSV file
+        with open("contact_tracing.csv", "w", newline='') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow([self.entry_name.get(), self.entry_phone.get(), self.entry_address.get(), self.entry_date_visited.get(),
-                             self.checkbox_travel.get(), self.travel_info_entry.get(),
-                             self.checkbox_quarantine.get(),
-                             self.checkbox_contact.get(), self.contact_info_entry.get(),
-                             self.checkbox_fever.get(), self.checkbox_cough.get(), self.checkbox_sore_throat.get(),
-                             self.checkbox_runny_nose.get(), self.checkbox_persistent_pain.get(), self.checkbox_shortness_breath.get(),
-                             self.checkbox_working_from_home.get()])
+            writer.writerows(entries)
 
         messagebox.showinfo("Success", "Contact information added successfully.")
-        if self.add_entry_toplevel:  
+        if self.add_entry_toplevel:  # Check if the Toplevel exists before trying to destroy it
             self.add_entry_toplevel.destroy()
