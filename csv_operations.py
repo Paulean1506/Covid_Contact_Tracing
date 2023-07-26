@@ -1,5 +1,6 @@
 import csv
 
+# Read and search the CSV file for the name
 class CSVOperations:
     @staticmethod
     def read_csv_data():
@@ -10,6 +11,7 @@ class CSVOperations:
                 entries.append(row)
         return entries
 
+    # Write all data back to the CSV file
     @staticmethod
     def write_csv_data(entries):
         with open("contact_tracing.csv", "w", newline='') as csvfile:
