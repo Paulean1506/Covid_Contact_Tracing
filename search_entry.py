@@ -8,6 +8,7 @@ class SearchEntryWindow:
         self.root = root
         self.search_name = search_name
 
+    # Get the value from the entry widget
     def search_entry(self):
         if not self.search_name:
             messagebox.showerror("Error", "Please enter a name to search.")

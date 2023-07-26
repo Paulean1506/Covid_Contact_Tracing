@@ -30,7 +30,7 @@ class AddEntryWindow:
             self.add_entry_toplevel.destroy()
 
         # Basic Information Frame
-        basic_info_frame = ttk.LabelFrame(self.add_entry_frame, text="Basic Information", style="Accent.TLabelframe")
+        basic_info_frame = ttk.LabelFrame(self.add_entry_frame, text="Basic Information", style="BW.TLabelframe")
         basic_info_frame.grid(row=0, column=0, padx=10, pady=10, sticky="w")
 
         # Labels and Entry widgets
@@ -117,7 +117,7 @@ class AddEntryWindow:
         contact_yes_checkbox.grid(row=1, column=0, padx=5, pady=5, sticky="w")
         contact_no_checkbox.grid(row=1, column=1, padx=5, pady=5, sticky="w")
         contact_info_label.grid(row=2, column=0, columnspan=2, sticky="w")
-        self.contact_info_entry.grid(row=3, column=0, columnspan=2, padx=5, pady=5, sticky="w")
+        self.contact_info_entry.grid(row=4, column=0, columnspan=2, padx=5, pady=5, sticky="w")
 
         # Health Information Frame
         health_info_frame = ttk.LabelFrame(self.add_entry_frame, text="Health Information", style="Accent.TLabelframe")

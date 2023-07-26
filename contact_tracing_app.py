@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from add_entry import AddEntryWindow
 from search_entry import SearchEntryWindow
-from csv_operations import CSVOperations
 from PIL import Image, ImageTk
 from styles import set_custom_style
 
