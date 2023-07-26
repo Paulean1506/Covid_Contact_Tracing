@@ -29,15 +29,6 @@ class AddEntryWindow:
         def go_back():
             self.add_entry_toplevel.destroy()
 
-        # Define the new custom style for the information frames with the image background
-        self.add_entry_frame_style = ttk.Style()
-        image = Image.open("C:/Users/Paulean/Downloads/Blue and Red Online Medical Talk Youtube Thumbnail.jpg")
-        self.photo = ImageTk.PhotoImage(image)
-        self.add_entry_frame_style.element_create("Custom.TFrame.background", "image", self.photo)
-        self.add_entry_frame_style.layout("Custom.TFrame", [('Custom.TFrame.border', {'sticky': 'nswe', 'children': [('Custom.TFrame.background', {'sticky': 'nswe'})]})])
-        self.add_entry_frame_style.configure("Custom.TFrame")
-
-
         # Basic Information Frame
         basic_info_frame = ttk.LabelFrame(self.add_entry_frame, text="Basic Information", style="Accent.TLabelframe")
         basic_info_frame.grid(row=0, column=0, padx=10, pady=10, sticky="w")
@@ -181,6 +172,19 @@ class AddEntryWindow:
         button_add.grid(row=6, column=0, columnspan=2, pady=5, sticky="w")
         button_back.grid(row=6, column=0, columnspan=2, pady=5, sticky="e")
 
+        # Define the new custom style for the information frames with the resized image background
+        self.add_entry_frame_style = ttk.Style()
+        if "background_image" not in self.add_entry_frame_style.element_names():
+            image = Image.open("C:/Users/Paulean/Downloads/Blue and Red Online Medical Talk Youtube Thumbnail.jpg")
+
+            # Adjust the image size 
+            resized_image = image.copy().resize((1400, 1000), Image.ANTIALIAS)
+            self.photo = ImageTk.PhotoImage(resized_image)
+            self.add_entry_frame_style.element_create("background_image", "image", self.photo)
+
+        self.add_entry_frame_style.layout("Custom.TFrame", [('Custom.TFrame.border', {'sticky': 'nswe', 'children': [('background_image', {'sticky': 'nswe'})]})])
+        self.add_entry_frame_style.configure("Custom.TFrame")
+
     def add_entry(self):
         # Validate if all fields are filled
         if not self.entry_name.get() or not self.entry_phone.get() or not self.entry_address.get() or not self.entry_date_visited.get():
@@ -214,6 +218,7 @@ class AddEntryWindow:
         messagebox.showinfo("Success", "Contact information added successfully.")
         if self.add_entry_toplevel:  
             self.add_entry_toplevel.destroy()
+            
 
     
 
