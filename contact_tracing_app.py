@@ -56,9 +56,7 @@ class ContactTracingApp:
         self.root.resizable(False, False)
 
     def add_entry_window(self):
-        self.add_entry_toplevel = tk.Toplevel(self.root)  
-        self.add_entry_toplevel.title("Add Entry")
-        add_entry_window = AddEntryWindow(self.add_entry_toplevel, self)
+        self.add_entry_window = AddEntryWindow(self.add_entry_toplevel, self)
 
     def search_entry(self):
         search_name = self.entry_search.get()  
