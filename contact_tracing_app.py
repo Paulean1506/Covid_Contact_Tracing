@@ -3,7 +3,6 @@ from tkinter import ttk, messagebox
 from add_entry import AddEntryWindow
 from search_entry import SearchEntryWindow
 from csv_operations import CSVOperations
-from tkinter import PhotoImage
 from PIL import Image, ImageTk
 from styles import set_custom_style
 
@@ -23,6 +22,7 @@ class ContactTracingApp:
         # Set the background image on a label
         self.background_label = ttk.Label(root, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        
         # Create a Label widget to display the background image
         self.background_label = tk.Label(root, image=self.background_image)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
