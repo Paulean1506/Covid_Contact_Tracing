@@ -14,16 +14,20 @@ class ContactTracingApp:
         # Set custom style
         set_custom_style()
 
+        # Header style
+        header_style = ttk.Style()
+        header_style.configure("Header.TLabel", font=("Helvetica", 24, "bold"), foreground="red")
+
         # Labels
-        self.label_search = ttk.Label(root, text="Search by Name:")
-        self.label_app_title = ttk.Label(root, text="COVID Contact Tracing App", font=("Helvetica", 16, "bold"))
+        self.label_search = ttk.Label(root, text="Search by Name:", font=("Helvetica", 16, "bold"))
+        self.label_app_title = ttk.Label(root, text="COVID Contact Tracing App", style="Header.TLabel")
 
         # Entry widget
-        self.entry_search = ttk.Entry(root)
+        self.entry_search = ttk.Entry(root, font=("Helvetica", 12))
 
         # Buttons
-        self.button_add_entry = ttk.Button(root, text="Add Entry", command=self.add_entry_window)
-        self.button_search = ttk.Button(root, text="Search Entry", command=self.perform_search)  
+        self.button_add_entry = ttk.Button(root, text="Add Entry", command=self.add_entry_window, style="Custom.TButton")
+        self.button_search = ttk.Button(root, text="Search Entry", command=self.perform_search, style="Custom.TButton")  
 
         # Layout using grid geometry manager
         self.label_app_title.grid(row=0, column=0, columnspan=2, padx=10, pady=5)
@@ -32,13 +36,19 @@ class ContactTracingApp:
         self.button_add_entry.grid(row=2, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
         self.button_search.grid(row=3, column=0, columnspan=2, padx=10, pady=5, sticky="ew")
 
+        # Set the background color of the main frame
+        self.root.configure(bg="#f0f0f0")
+
+        # Disable resizing of the window
+        self.root.resizable(False, False)
+
     def add_entry_window(self):
-        self.add_entry_toplevel = tk.Toplevel(self.root)  # Use self.add_entry_toplevel
+        self.add_entry_toplevel = tk.Toplevel(self.root)  
         self.add_entry_toplevel.title("Add Entry")
         add_entry_window = AddEntryWindow(self.add_entry_toplevel, self)
 
     def search_entry(self):
-        search_name = self.entry_search.get()  # Get the value from the entry widget
+        search_name = self.entry_search.get()  
 
         if not search_name:
             messagebox.showerror("Error", "Please enter a name to search.")
@@ -51,7 +61,4 @@ class ContactTracingApp:
         search_entry_window = SearchEntryWindow(self.root, search_name)
         search_entry_window.search_entry()
 
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = ContactTracingApp(root)
-    root.mainloop()
+
