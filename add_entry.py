@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import csv
-from PIL import Image, ImageTk
 
 class AddEntryWindow:
     def __init__(self, root, parent_app):
@@ -9,13 +8,6 @@ class AddEntryWindow:
         self.parent_app = parent_app
         self.add_entry_toplevel = tk.Toplevel(self.root)
         self.add_entry_toplevel.title("Add Entry")
-
-        # Load and display the background image using Canvas
-        self.background_image = Image.open("C:/Users/Paulean/Downloads/Blue and Red Online Medical Talk Youtube Thumbnail.jpg")
-        self.background_image = ImageTk.PhotoImage(self.background_image)
-        canvas = tk.Canvas(self.add_entry_toplevel, bg="#f0f0f0", width=self.background_image.width(), height=self.background_image.height())
-        canvas.create_image(0, 0, anchor=tk.NW, image=self.background_image)
-        canvas.pack()
 
         # Create a canvas to add scrollbars
         canvas = tk.Canvas(self.add_entry_toplevel, bg="#f0f0f0")
@@ -213,9 +205,5 @@ class AddEntryWindow:
         if self.add_entry_toplevel:  
             self.add_entry_toplevel.destroy()
 
-    def add_entry_window(self):
-        self.add_entry_toplevel = tk.Toplevel(self.root)
-        self.add_entry_toplevel.title("Add Entry")
-        add_entry_window = AddEntryWindow(self.add_entry_toplevel, self)
-
+    
 
