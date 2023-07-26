@@ -3,6 +3,8 @@ from tkinter import ttk, messagebox
 from add_entry import AddEntryWindow
 from search_entry import SearchEntryWindow
 from csv_operations import CSVOperations
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
 from styles import set_custom_style
 
 class ContactTracingApp:
@@ -14,9 +16,20 @@ class ContactTracingApp:
         # Set custom style
         set_custom_style()
 
+        # Load the image using PIL (Pillow)
+        self.background_image = Image.open("C:/Users/Paulean/Desktop/CALCULUS/GettyImages-1215392772.jpg")
+        self.background_image = ImageTk.PhotoImage(self.background_image)
+
+        # Set the background image on a label
+        self.background_label = ttk.Label(root, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+        # Create a Label widget to display the background image
+        self.background_label = tk.Label(root, image=self.background_image)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
         # Header style
         header_style = ttk.Style()
-        header_style.configure("Header.TLabel", font=("Helvetica", 24, "bold"), foreground="red")
+        header_style.configure("Header.TLabel", font=("Helvetica", 20, "bold"), foreground="red")
 
         # Labels
         self.label_search = ttk.Label(root, text="Search by Name:", font=("Helvetica", 16, "bold"))
@@ -60,5 +73,4 @@ class ContactTracingApp:
         search_name = self.entry_search.get()
         search_entry_window = SearchEntryWindow(self.root, search_name)
         search_entry_window.search_entry()
-
 
